@@ -1,10 +1,10 @@
 <div class="posts index">
-	<h2><?php echo __('Posts'); ?></h2>
+	<h2><?php echo '日報一覧'; ?></h2>
 
 	<!-- 追加フォーム -->
 	<?php echo $this->Form->create('Post'); ?>
 		<fieldset>
-			<legend><?php echo __('Add Post'); ?></legend>
+			<legend><?php echo '本日の作業予定'; ?></legend>
 		<?php
 			echo $this->Form->hidden('user_id', array('value'=>$userId));
 			echo $this->Form->input('body');
