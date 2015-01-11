@@ -7,36 +7,19 @@
 			<legend><?php echo '本日の作業予定'; ?></legend>
 		<?php
 			echo $this->Form->hidden('user_id', array('value'=>$userId));
-			echo $this->Form->input('body');
+			echo $this->Form->input('body', array('label' => false));
 			echo $this->Form->hidden('type', array('value'=>1));
 		?>
 		</fieldset>
 	<?php echo $this->Form->end(__('Submit')); ?>
 
-
 	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('body'); ?></th>
-			<th><?php echo $this->Paginator->sort('type'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
 	<tbody>
 	<?php foreach ($posts as $post): ?>
 	<tr>
-		<td><?php echo h($post['Post']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($post['User']['id'], array('controller' => 'users', 'action' => 'view', $post['User']['id'])); ?>
-		</td>
+		<td><?php echo h($post['User']['username']); ?>&nbsp;</td>
 		<td><?php echo h($post['Post']['body']); ?>&nbsp;</td>
-		<td><?php echo h($post['Post']['type']); ?>&nbsp;</td>
 		<td><?php echo h($post['Post']['created']); ?>&nbsp;</td>
-		<td><?php echo h($post['Post']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('add_selffeedback'), array('action' => 'add', $post['Post']['id'])); ?>
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $post['Post']['id'])); ?>
