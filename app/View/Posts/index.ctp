@@ -12,22 +12,46 @@
 		?>
 		</fieldset>
 	<?php echo $this->Form->end(__('Submit')); ?>
-
 	<table cellpadding="0" cellspacing="0">
 	<tbody>
 	<?php foreach ($posts as $post): ?>
-	<tr>
-		<td><?php echo h($post['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($post['Post']['body']); ?>&nbsp;</td>
-		<td><?php echo h($post['Post']['created']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('add_selffeedback'), array('action' => 'add', $post['Post']['id'])); ?>
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $post['Post']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $post['Post']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $post['Post']['id']), array(), __('Are you sure you want to delete # %s?', $post['Post']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
+		<tr>
+			<td><?php echo h($post['User']['username']); ?>&nbsp;</td>
+			<td><?php echo h($post['Post']['body']); ?>&nbsp;</td>
+			<td><?php echo h($post['Post']['created']); ?>&nbsp;</td>
+			<td><?php echo h($post['Post']['created']); ?>&nbsp;</td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('add_selffeedback'), array('action' => 'add', $post['Post']['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('action' => 'view', $post['Post']['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $post['Post']['id'])); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $post['Post']['id']), array(), __('Are you sure you want to delete # %s?', $post['Post']['id'])); ?>
+			</td>
+		</tr>
+
+		<!-- コメント表示 -->
+		<?php foreach ($post['Comment'] as $cmt): ?>
+			<tr>
+				<td>Comments</td>
+				<td colspan="4" ><?php echo h($cmt['body']); ?>&nbsp;</td>
+			</tr>
+		<?php endforeach; ?>
+
+		<!-- コメント投稿 -->
+		<tr>
+			<td colspan="5" >
+				<?php echo $this->Form->create('Comment'); ?>
+					<fieldset>
+						<legend><?php echo 'コメントを投稿する'; ?></legend>
+					<?php
+						echo $this->Form->hidden('user_id', array('value'=>$userId));
+						echo $this->Form->hidden('post_id', array('value'=>h($post['Post']['id'])));
+						echo $this->Form->input('body', array('label' => false));
+					?>
+					</fieldset>
+				<?php echo $this->Form->end(__('Submit')); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
 	</tbody>
 	</table>
 	<p>

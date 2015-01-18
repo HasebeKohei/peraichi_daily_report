@@ -80,5 +80,4 @@ class Post extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
 }

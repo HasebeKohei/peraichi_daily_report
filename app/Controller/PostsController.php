@@ -29,14 +29,15 @@ class PostsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Post->recursive = 0;
+		$this->Post->recursive = 1;
 		$this->set('posts', $this->Paginator->paginate());
 
 		// 投稿を追加するとき(addの中身)
 		$this->set('userId', $this->Auth->user('id'));
+		$postModel = key($this->request->data);
 		if ($this->request->is('post')) {
-			$this->Post->create();
-			if ($this->Post->save($this->request->data)) {
+			$this->$postModel->create();
+			if ($this->$postModel->save($this->request->data)) {
 				$this->Session->setFlash(__('The post has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
