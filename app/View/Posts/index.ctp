@@ -19,7 +19,6 @@
 			<td><?php echo h($post['User']['username']); ?>&nbsp;</td>
 			<td><?php echo h($post['Post']['body']); ?>&nbsp;</td>
 			<td><?php echo h($post['Post']['created']); ?>&nbsp;</td>
-			<td><?php echo h($post['Post']['created']); ?>&nbsp;</td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('add_selffeedback'), array('action' => 'add', $post['Post']['id'])); ?>
 				<?php echo $this->Html->link(__('View'), array('action' => 'view', $post['Post']['id'])); ?>

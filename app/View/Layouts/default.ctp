@@ -39,6 +39,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<?php echo $this->Html->link( 'ログアウト' ,array('controller' => 'Users', 'action' => 'logout'));?>
+			<?php echo $this->Html->link( 'ユーザー情報編集' ,array('controller' => 'Users', 'action' => 'edit'));?>
 		</div>
 		<div id="content">
 

@@ -34,6 +34,7 @@ class PostsController extends AppController {
 
 		// 投稿を追加するとき(addの中身)
 		$this->set('userId', $this->Auth->user('id'));
+		// request->dataのキーがModel名と一致しているため、その値を使用する
 		$postModel = key($this->request->data);
 		if ($this->request->is('post')) {
 			$this->$postModel->create();
